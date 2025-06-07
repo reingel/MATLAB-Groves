@@ -24,6 +24,8 @@ def Plot_profile(profile):
             - Column 9: pitch angle of body w.r.t NED (deg)
             - Column 10: yaw angle of body w.r.t NED (deg)
     """
+    rad_to_deg = 57.2957795131  # Conversion factor from radians to degrees
+
     fig = plt.figure(figsize=(12, 8))
     fig.subplots_adjust(left=0.1, right=0.95, bottom=0.08, top=0.92, wspace=0.08, hspace=0.16)
 
@@ -67,21 +69,21 @@ def Plot_profile(profile):
 
     # Bank (roll)
     ax7 = fig.add_subplot(337)
-    ax7.plot(profile[:, 0], profile[:, 7], linewidth=1.5, color=[0, 0.7, 0.7])
+    ax7.plot(profile[:, 0], profile[:, 7] * rad_to_deg, linewidth=1.5, color=[0, 0.7, 0.7])
     ax7.set_xlabel('Time, s')
     ax7.set_title('Bank, deg')
     ax7.set_position([0.1, 0.08, 0.27, 0.25])
 
     # Elevation (pitch)
     ax8 = fig.add_subplot(338)
-    ax8.plot(profile[:, 0], profile[:, 8], linewidth=1.5, color=[0.7, 0, 0.7])
+    ax8.plot(profile[:, 0], profile[:, 8] * rad_to_deg, linewidth=1.5, color=[0.7, 0, 0.7])
     ax8.set_xlabel('Time, s')
     ax8.set_title('Elevation, deg')
     ax8.set_position([0.38, 0.08, 0.27, 0.25])
 
     # Heading (yaw)
     ax9 = fig.add_subplot(339)
-    ax9.plot(profile[:, 0], profile[:, 9], linewidth=1.5, color=[0.7, 0.7, 0])
+    ax9.plot(profile[:, 0], profile[:, 9] * rad_to_deg, linewidth=1.5, color=[0.7, 0.7, 0])
     ax9.set_xlabel('Time, s')
     ax9.set_title('Heading, deg')
     ax9.set_position([0.66, 0.08, 0.27, 0.25])
